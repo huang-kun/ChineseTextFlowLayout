@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A52172E23A4BB6900083664 /* demo.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1A52172D23A4BB6900083664 /* demo.txt */; };
+		1A93C8F623A6346500BD059E /* StringComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93C8F523A6346500BD059E /* StringComponents.swift */; };
 		1AEF1AAE23A3C5AA001B7FEF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEF1AAD23A3C5AA001B7FEF /* AppDelegate.swift */; };
 		1AEF1AB023A3C5AA001B7FEF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEF1AAF23A3C5AA001B7FEF /* ViewController.swift */; };
 		1AEF1AB323A3C5AA001B7FEF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1AEF1AB123A3C5AA001B7FEF /* Main.storyboard */; };
@@ -14,6 +16,8 @@
 		1AEF1AB823A3C5AB001B7FEF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1AEF1AB623A3C5AB001B7FEF /* LaunchScreen.storyboard */; };
 		1AEF1AC323A3C5AB001B7FEF /* ChineseTextFlowLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEF1AC223A3C5AB001B7FEF /* ChineseTextFlowLayoutTests.swift */; };
 		1AEF1ACE23A3C5AB001B7FEF /* ChineseTextFlowLayoutUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEF1ACD23A3C5AB001B7FEF /* ChineseTextFlowLayoutUITests.swift */; };
+		1AEF1ADC23A3C608001B7FEF /* ChineseTextFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEF1ADB23A3C608001B7FEF /* ChineseTextFlowLayout.swift */; };
+		1AEF1ADE23A3C67A001B7FEF /* LayoutNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEF1ADD23A3C67A001B7FEF /* LayoutNode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1A52172D23A4BB6900083664 /* demo.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = demo.txt; sourceTree = "<group>"; };
+		1A93C8F523A6346500BD059E /* StringComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringComponents.swift; sourceTree = "<group>"; };
 		1AEF1AAA23A3C5AA001B7FEF /* ChineseTextFlowLayout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChineseTextFlowLayout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AEF1AAD23A3C5AA001B7FEF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1AEF1AAF23A3C5AA001B7FEF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -47,6 +53,8 @@
 		1AEF1AC923A3C5AB001B7FEF /* ChineseTextFlowLayoutUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChineseTextFlowLayoutUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1AEF1ACD23A3C5AB001B7FEF /* ChineseTextFlowLayoutUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChineseTextFlowLayoutUITests.swift; sourceTree = "<group>"; };
 		1AEF1ACF23A3C5AB001B7FEF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1AEF1ADB23A3C608001B7FEF /* ChineseTextFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChineseTextFlowLayout.swift; sourceTree = "<group>"; };
+		1AEF1ADD23A3C67A001B7FEF /* LayoutNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutNode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,10 +107,14 @@
 			children = (
 				1AEF1AAD23A3C5AA001B7FEF /* AppDelegate.swift */,
 				1AEF1AAF23A3C5AA001B7FEF /* ViewController.swift */,
+				1AEF1ADB23A3C608001B7FEF /* ChineseTextFlowLayout.swift */,
+				1AEF1ADD23A3C67A001B7FEF /* LayoutNode.swift */,
+				1A93C8F523A6346500BD059E /* StringComponents.swift */,
 				1AEF1AB123A3C5AA001B7FEF /* Main.storyboard */,
 				1AEF1AB423A3C5AB001B7FEF /* Assets.xcassets */,
 				1AEF1AB623A3C5AB001B7FEF /* LaunchScreen.storyboard */,
 				1AEF1AB923A3C5AB001B7FEF /* Info.plist */,
+				1A52172D23A4BB6900083664 /* demo.txt */,
 			);
 			path = ChineseTextFlowLayout;
 			sourceTree = "<group>";
@@ -232,6 +244,7 @@
 				1AEF1AB823A3C5AB001B7FEF /* LaunchScreen.storyboard in Resources */,
 				1AEF1AB523A3C5AB001B7FEF /* Assets.xcassets in Resources */,
 				1AEF1AB323A3C5AA001B7FEF /* Main.storyboard in Resources */,
+				1A52172E23A4BB6900083664 /* demo.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,6 +271,9 @@
 			files = (
 				1AEF1AB023A3C5AA001B7FEF /* ViewController.swift in Sources */,
 				1AEF1AAE23A3C5AA001B7FEF /* AppDelegate.swift in Sources */,
+				1AEF1ADC23A3C608001B7FEF /* ChineseTextFlowLayout.swift in Sources */,
+				1AEF1ADE23A3C67A001B7FEF /* LayoutNode.swift in Sources */,
+				1A93C8F623A6346500BD059E /* StringComponents.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -435,6 +451,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3S67G6A35R;
 				INFOPLIST_FILE = ChineseTextFlowLayout/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -453,6 +470,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3S67G6A35R;
 				INFOPLIST_FILE = ChineseTextFlowLayout/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
