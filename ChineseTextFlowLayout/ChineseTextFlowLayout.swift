@@ -47,11 +47,15 @@ class ChineseTextFlowLayout: UICollectionViewFlowLayout {
     
     func updateLayoutNodes() {
         for node in nodes {
-            // 该节点不可以出现在行首，看情况换行
-            if node.isHeadOfLine && !node.canBeHeadOfLine {
+            // 如果是换行符，直接换行
+            if node.hasLineBreak {
+                node.changeToNextLine()
+            }
+            // 该节点（e.g.末尾标点）不可以出现在行首，寻找前面可以换行的节点来换行
+            else if node.isHeadOfLine && !node.canBeHeadOfLine {
                 node.adjustPositionsFromPreviousCandidate()
             }
-            // 该节点不可以出现在行末尾，看情况换行
+            // 该节点（e.g.起始标点）不可以出现在行末尾，看情况换行
             else if node.isTailOfLine && !node.canBeTailOfLine {
                 if node.canBeHeadOfLine {
                     node.changeToNextLine()
@@ -72,7 +76,7 @@ class ChineseTextFlowLayout: UICollectionViewFlowLayout {
                     node.adjustPositionsFromPreviousCandidate()
                 }
             }
-            // 如果调整后，该节点依然超出frame，说明容器宽度过窄导致之前的换行无效，因此采取强制换行
+            // 如果调整后，该节点依然超出frame，可能是容器宽度过窄导致之前的换行无效，因此采取强制换行
             if node.isBeyondBoundary {
                 node.changeToNextLine()
             }

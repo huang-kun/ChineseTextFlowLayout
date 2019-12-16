@@ -20,6 +20,9 @@ final class LayoutNode {
     static var endPuncCharset: CharacterSet {
         return CharacterSet(charactersIn: "\u{ff09}\u{3009}\u{300b}\u{300d}\u{300f}\u{fe44}\u{3015}\u{2014}\u{fe4f}\u{3001}\u{3011}\u{3002}\u{ff01}\u{ff1b}\u{201d}\u{2019}\u{2026}\u{ff5e}\u{ff0c}\u{ff1f}\u{ff1a}")
     }
+    static var lineBreakCharSet: CharacterSet {
+        return CharacterSet(charactersIn: "\u{000a}")
+    }
     /// 查看string是否属于特殊字符
     static func checkIf(text: String, foundInCharSet charSet: CharacterSet) -> Bool {
         guard let r = text.rangeOfCharacter(from: charSet) else { return false }
@@ -42,6 +45,8 @@ final class LayoutNode {
     let isBeginPunc: Bool
     /// 该节点是否为结束标点
     let isEndPunc: Bool
+    /// 包含换行符
+    let hasLineBreak: Bool
     
     // MARK: 初始化
     
@@ -51,6 +56,7 @@ final class LayoutNode {
         self.layout = layout
         self.isBeginPunc = LayoutNode.checkIf(text: content, foundInCharSet: LayoutNode.beginPuncCharset)
         self.isEndPunc = LayoutNode.checkIf(text: content, foundInCharSet: LayoutNode.endPuncCharset)
+        self.hasLineBreak = LayoutNode.checkIf(text: content, foundInCharSet: LayoutNode.lineBreakCharSet)
     }
     
     // MARK: 节点计算属性
@@ -101,7 +107,7 @@ final class LayoutNode {
     }
     /// 从该节点之前（可以换行）的某个节点开始换行，然后调整从换行后的节点到当前节点之间所有节点的位置
     func adjustPositionsFromPreviousCandidate() {
-        if let prev = lookupPreviousCandidate() {
+        if let prev = lookupPreviousCandidate(), !prev.hasLineBreak {
             prev.changeToNextLine()
             if prev.next !== self {
                 var next = prev.next
@@ -118,6 +124,10 @@ final class LayoutNode {
         guard let prev = prev else { return }
         frame.origin.x = sectionInset.left
         frame.origin.y = prev.frame.maxY + minimumLineSpacing
+        // 修复换行符高度的bug
+        if hasLineBreak {
+            frame.size.height = prev.frame.size.height
+        }
     }
     /// 找到该节点之前（可以换行）的某个节点
     func lookupPreviousCandidate() -> LayoutNode? {
