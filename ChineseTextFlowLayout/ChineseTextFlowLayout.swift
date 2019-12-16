@@ -67,6 +67,7 @@ class ChineseTextFlowLayout: UICollectionViewFlowLayout {
             else {
                 node.adjustPosition()
             }
+            
             // 如果调整后，该节点超出frame，依然需要换行
             if node.beyondBoundary {
                 if node.canBeHeadOfLine {
@@ -74,6 +75,10 @@ class ChineseTextFlowLayout: UICollectionViewFlowLayout {
                 } else {
                     node.adjustPositionsFromPreviousCandidate()
                 }
+            }
+            // 如果调整后，该节点依然超出frame，说明容器宽度过窄导致之前的换行无效，因此采取强制换行
+            if node.beyondBoundary {
+                node.changeToNextLine()
             }
         }
     }
