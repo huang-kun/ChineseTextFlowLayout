@@ -18,6 +18,15 @@ class ViewController: UIViewController {
     var flowLayout: UICollectionViewFlowLayout!
     var textLayout: ChineseTextFlowLayout!
     var characters: [String] = []
+    var textContent: String = "" {
+        didSet {
+            characters.removeAll()
+            characters += textContent.characterStringComponents()
+            // 预先调用viewDidLoad
+            let _ = view
+            collectionView.reloadData()
+        }
+    }
     
     @IBOutlet weak var layoutSwitcher: UISwitch!
     @IBOutlet weak var widthSlider: UISlider!
@@ -42,16 +51,20 @@ class ViewController: UIViewController {
         minimumCompressionWidth = flowLayout.itemSize.width + flowLayout.sectionInset.left + flowLayout.sectionInset.right + collectionView.contentInset.left + collectionView.contentInset.right + 1
         
         loadText()
-        collectionView.reloadData()
     }
 
     func loadText() {
         characters.removeAll()
         if let path = Bundle.main.path(forResource: "demo", ofType: "txt") {
-            let text = try! NSString(contentsOfFile: path, encoding: String.Encoding.utf8.rawValue)
-            characters += text.characterStringComponents()
+            let text = try! NSMutableString(contentsOfFile: path, encoding: String.Encoding.utf8.rawValue)
+            if text.hasSuffix("\n") {
+                text.deleteCharacters(in: NSRange(location: text.length-1, length: 1))
+            }
+            textContent = text as String
         }
     }
+    
+    // MARK: Actions
     
     @IBAction func changeLayout(_ sender: UISwitch) {
         collectionView.collectionViewLayout = sender.isOn ? textLayout : flowLayout
@@ -62,12 +75,14 @@ class ViewController: UIViewController {
         changeWidth(inSize: layoutFrame.size, progress: CGFloat(sender.value))
     }
     
-    @IBAction func editText(_ sender: UIBarButtonItem) {
+    @IBAction func changeItemSize(_ sender: UIBarButtonItem) {
         let estimatedSize = CGSize(width: 44, height: 44)
         flowLayout.estimatedItemSize = estimatedSize
         textLayout.estimatedItemSize = estimatedSize
         collectionView.collectionViewLayout.invalidateLayout()
     }
+    
+    // MARK: Size change
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         guard let layoutFrame = view.layoutGuides.first?.layoutFrame else { return }
@@ -84,6 +99,15 @@ class ViewController: UIViewController {
         trailingConstraint.constant = constant
     }
     
+    // MARK: Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is TextViewController {
+            let tvc = segue.destination as! TextViewController
+            tvc.content = textContent
+            tvc.delegate = self
+        }
+    }
 }
 
 extension ViewController: UICollectionViewDataSource {
@@ -104,6 +128,14 @@ extension ViewController: ChineseTextFlowLayoutDelegate {
     
     func collectionView(_ collectionView: UICollectionView, layout: ChineseTextFlowLayout, chineseTextForItemAt indexPath: IndexPath) -> String {
         return characters[indexPath.item]
+    }
+    
+}
+
+extension ViewController: TextViewControllerDelegate {
+    
+    func textViewControllerWillDisappear(_ tvc: TextViewController) {
+        textContent = tvc.content
     }
     
 }

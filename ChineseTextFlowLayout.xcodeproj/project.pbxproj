@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A0F01AE23A76B9800E5D19C /* TextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0F01AD23A76B9800E5D19C /* TextViewController.swift */; };
 		1A52172E23A4BB6900083664 /* demo.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1A52172D23A4BB6900083664 /* demo.txt */; };
 		1A93C8F623A6346500BD059E /* StringComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A93C8F523A6346500BD059E /* StringComponents.swift */; };
 		1AEF1AAE23A3C5AA001B7FEF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AEF1AAD23A3C5AA001B7FEF /* AppDelegate.swift */; };
@@ -38,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1A0F01AD23A76B9800E5D19C /* TextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewController.swift; sourceTree = "<group>"; };
 		1A52172D23A4BB6900083664 /* demo.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = demo.txt; sourceTree = "<group>"; };
 		1A93C8F523A6346500BD059E /* StringComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringComponents.swift; sourceTree = "<group>"; };
 		1AEF1AAA23A3C5AA001B7FEF /* ChineseTextFlowLayout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChineseTextFlowLayout.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -107,6 +109,7 @@
 			children = (
 				1AEF1AAD23A3C5AA001B7FEF /* AppDelegate.swift */,
 				1AEF1AAF23A3C5AA001B7FEF /* ViewController.swift */,
+				1A0F01AD23A76B9800E5D19C /* TextViewController.swift */,
 				1AEF1ADB23A3C608001B7FEF /* ChineseTextFlowLayout.swift */,
 				1AEF1ADD23A3C67A001B7FEF /* LayoutNode.swift */,
 				1A93C8F523A6346500BD059E /* StringComponents.swift */,
@@ -274,6 +277,7 @@
 				1AEF1ADC23A3C608001B7FEF /* ChineseTextFlowLayout.swift in Sources */,
 				1AEF1ADE23A3C67A001B7FEF /* LayoutNode.swift in Sources */,
 				1A93C8F623A6346500BD059E /* StringComponents.swift in Sources */,
+				1A0F01AE23A76B9800E5D19C /* TextViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
