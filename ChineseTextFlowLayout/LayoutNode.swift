@@ -78,7 +78,7 @@ final class LayoutNode {
         return !isBeginPunc
     }
     /// 该节点是否超出该行的显示区域
-    var beyondBoundary: Bool {
+    var isBeyondBoundary: Bool {
         return frame.maxX > lineWidth
     }
     
@@ -185,6 +185,13 @@ extension LayoutNode: CustomStringConvertible {
 
 extension LayoutNode: CustomDebugStringConvertible {
     var debugDescription: String {
-        return content
+        var desc = content + " \(frame)"
+        if isHeadOfLine {
+            desc += " line_head"
+        }
+        if isTailOfLine {
+            desc += " line_tail"
+        }
+        return desc
     }
 }
