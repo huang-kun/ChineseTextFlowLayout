@@ -76,9 +76,16 @@ class ViewController: UIViewController {
     }
     
     @IBAction func changeItemSize(_ sender: UIBarButtonItem) {
-        let estimatedSize = CGSize(width: 44, height: 44)
-        flowLayout.estimatedItemSize = estimatedSize
-        textLayout.estimatedItemSize = estimatedSize
+        if sender.tag == 0 {
+            sender.tag = 1
+            let estimatedSize = UICollectionViewFlowLayout.automaticSize
+            flowLayout.estimatedItemSize = estimatedSize
+            textLayout.estimatedItemSize = estimatedSize
+        } else {
+            sender.tag = 0
+            flowLayout.estimatedItemSize = CGSize.zero
+            textLayout.estimatedItemSize = CGSize.zero
+        }
         collectionView.collectionViewLayout.invalidateLayout()
     }
     
