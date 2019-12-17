@@ -90,6 +90,14 @@ final class LayoutNode {
     
     // MARK: 方法
     
+    /// 修复不正确的节点位置
+    func validatePosition() {
+        guard let prev = prev else { return }
+        if frame.maxY <= prev.frame.minY {
+            frame.origin.y = prev.frame.maxY - frame.size.height
+        }
+    }
+    
     /// 调整该节点的位置
     func adjustPosition() {
         guard let prev = prev else {

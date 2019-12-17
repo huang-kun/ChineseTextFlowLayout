@@ -11,7 +11,11 @@ import UIKit
 class ChineseTextFlowLayout: UICollectionViewFlowLayout {
     
     var nodes: [LayoutNode] = []
+    var oldFrameOfLastNode = CGRect.zero
+    var newFrameOfLastNode = CGRect.zero
     
+    // MARK: override
+
     override func prepare() {
         super.prepare()
         createLayoutNodes()
@@ -21,6 +25,16 @@ class ChineseTextFlowLayout: UICollectionViewFlowLayout {
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         return nodes.filter { rect.contains($0.frame) }.map { $0.attr }
     }
+    
+    override var collectionViewContentSize: CGSize {
+        var contentSize = super.collectionViewContentSize
+        if oldFrameOfLastNode != newFrameOfLastNode {
+            contentSize.height += abs(newFrameOfLastNode.maxY - oldFrameOfLastNode.maxY)
+        }
+        return contentSize
+    }
+    
+    // MARK: Custom
     
     func createLayoutNodes() {
         nodes.first?.removeAll()
@@ -43,10 +57,14 @@ class ChineseTextFlowLayout: UICollectionViewFlowLayout {
                 }
             }
         }
+        oldFrameOfLastNode = nodes.last?.frame ?? CGRect.zero
     }
     
     func updateLayoutNodes() {
         for node in nodes {
+            // 修复位置布局错误的节点
+            node.validatePosition()
+            
             // 如果是换行符，直接换行
             if node.hasLineBreak {
                 node.changeToNextLine()
@@ -81,6 +99,7 @@ class ChineseTextFlowLayout: UICollectionViewFlowLayout {
                 node.changeToNextLine()
             }
         }
+        newFrameOfLastNode = nodes.last?.frame ?? CGRect.zero
     }
     
     func debugLookupFirstNode(match text: String) -> LayoutNode? {
