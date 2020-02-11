@@ -120,6 +120,7 @@ final class LayoutNode {
             if prev.next !== self {
                 var next = prev.next
                 while next !== self {
+                    guard next != nil else { break }
                     next?.adjustPosition()
                     next = next?.next
                 }
